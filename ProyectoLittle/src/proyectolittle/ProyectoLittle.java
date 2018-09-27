@@ -5,6 +5,9 @@
  */
 package proyectolittle;
 
+import controlador.Controlador;
+import vista.PantallaInicial;
+
 /**
  *
  * @author Usuario
@@ -16,6 +19,9 @@ public class ProyectoLittle {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        new Controlador(new PantallaInicial()).Iniciar();
+        
     }
     
 }

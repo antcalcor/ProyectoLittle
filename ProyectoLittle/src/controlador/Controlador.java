@@ -44,7 +44,7 @@ public class Controlador implements ActionListener, MouseListener {
 			SwingUtilities.updateComponentTreeUI(pIni);
 			pIni.setVisible(true);
 			pIni.setLocationRelativeTo(null);
-                        pIni.setExtendedState(MAXIMIZED_BOTH);
+                        //pIni.setExtendedState(MAXIMIZED_BOTH);
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
         }
 
@@ -65,13 +65,22 @@ public class Controlador implements ActionListener, MouseListener {
             
             case CLIENTE:
                 
+                pIni.setVisible(false);
+                pIni.jDialog1.setVisible(true);
+                
                 break;
                 
             case ARTICULO:
                 
+                pIni.setVisible(false);
+                pIni.jDialog2.setVisible(true);
+                
                 break;
                 
             case FACTURA:
+                
+                pIni.setVisible(false);
+                pIni.jDialog3.setVisible(true);
                 
                 break;
         }
