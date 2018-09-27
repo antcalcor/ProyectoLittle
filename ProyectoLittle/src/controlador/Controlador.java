@@ -47,15 +47,35 @@ public class Controlador implements ActionListener, MouseListener {
                         pIni.setExtendedState(MAXIMIZED_BOTH);
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
         }
-    }
-    
+
     //Declaramos las acciones y anidamos las escuchas al evento producido por el componente
-    //tengo que seguir por aqui mirar controlador acceso proyecto final
-    
+       
+        pIni.jButton1.setActionCommand("CLIENTE");
+        pIni.jButton1.addActionListener(this);
+        pIni.jButton2.setActionCommand("ARTICULO");
+        pIni.jButton2.addActionListener(this);
+        pIni.jButton3.setActionCommand("FACTURA");
+        pIni.jButton3.addActionListener(this);
+    }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        switch(accionesPIni.valueOf(ae.getActionCommand())){
+            
+            case CLIENTE:
+                
+                break;
+                
+            case ARTICULO:
+                
+                break;
+                
+            case FACTURA:
+                
+                break;
+        }
+        
     }
 
     @Override
