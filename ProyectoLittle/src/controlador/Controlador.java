@@ -56,6 +56,9 @@ public class Controlador implements ActionListener, MouseListener {
         pIni.jButton2.addActionListener(this);
         pIni.jButton3.setActionCommand("FACTURA");
         pIni.jButton3.addActionListener(this);
+        pIni.jDialog1.setLocationRelativeTo(null);
+        pIni.jDialog2.setLocationRelativeTo(null);
+        pIni.jDialog3.setLocationRelativeTo(null);
     }
     
     @Override

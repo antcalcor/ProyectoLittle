@@ -69,7 +69,6 @@ public class PantallaInicial extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(100, 100));
 
         jButton1.setText("CLIENTES");
 
