@@ -3,10 +3,10 @@ import java.sql.*;
 
 public class Database {
   /* DATOS PARA LA CONEXION */
-  private String bd = "db_di";
+  private String bd = "proyectolittle";
   private String login = "root";
   private String password = "root";
-  private String url = "jdbc:mysql://localhost/"+bd;
+  private String url = "jdbc:mysql://localhost:3306/"+bd;
   private Connection conn = null;
 //___________________________________________________________________________________ 
    public Database(){
