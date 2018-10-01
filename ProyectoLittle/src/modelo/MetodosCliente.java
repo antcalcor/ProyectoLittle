@@ -38,13 +38,14 @@ public class MetodosCliente extends Database{
         //INSERTAR CLIENTE
         public void insertarClienteBBDD(String nif, String nombre, String direccion) {
 			// se arma la consulta
-			String q = " INSERT INTO artista (nif, nombre, direccion)" + "VALUES ('" + nif + "','" + nombre + "','"
+			String q = "INSERT INTO clientes (nif, nombre, direcc)" + "VALUES ('" + nif + "','" + nombre + "','"
 					+ direccion + "', 0)";
 			// se ejecuta la consulta
 			try {
 				PreparedStatement pstm = this.getConnection().prepareStatement(q);
 				pstm.execute();
 				pstm.close();
+                                System.out.println("insertado");
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());
 			}
@@ -89,7 +90,7 @@ public class MetodosCliente extends Database{
         //ACTUALIZAMOS CLIENTE EN LA BBDD
         public void actualizarClienteBBDD(String nif, String nombre, String direccion) {
 		String q = " UPDATE clientes " + "SET nombre='" + nombre
-				+ "', direccion= "+ direccion + " WHERE nif= '" + nif + " '";
+				+ "', direcc= "+ direccion + " WHERE nif= '" + nif + " '";
 
 		try {
 			PreparedStatement pstm = this.getConnection().prepareStatement(q);
@@ -101,7 +102,7 @@ public class MetodosCliente extends Database{
 	}
         
         //BORRAR ARRAY DE CLIENTES
-        public void eliminarArtistasArray() {
+        public void eliminarClientesArray() {
 		Iterator it = Clientes.keySet().iterator();
 		while (it.hasNext()) {
 			String clave = (String) it.next();
@@ -113,16 +114,16 @@ public class MetodosCliente extends Database{
         //DEVOLVER ARRAY DE CLIENTES
         public void devolverClientesArray() {
 		// se arma la consulta
-		String q = "SELECT nif, nombre, direccion FROM cliente ";
+		String q = "SELECT nif, nombre, direcc FROM clientes ";
 		// se ejecuta la consulta
 		try {
 			PreparedStatement pstm = this.getConnection().prepareStatement(q);
 			ResultSet res = pstm.executeQuery();
-			eliminarArtistasArray();
+			eliminarClientesArray();
 			int i = 0;
 			while (res.next()) {
 				
-				Cliente cliente = new Cliente(res.getString("nif"), res.getString("nombre"), res.getString("direccion"));
+				Cliente cliente = new Cliente(res.getString("nif"), res.getString("nombre"), res.getString("direcc"));
 				
 				Clientes.put(res.getString("nif"), cliente);
 				i++;
@@ -160,13 +161,13 @@ public class MetodosCliente extends Database{
 			// realizamos la consulta sql y llenamos los datos en la matriz "Object[][]
 			// data"
 			pstm = this.getConnection()
-					.prepareStatement("SELECT nif, nombre, direccion FROM clientes");
+					.prepareStatement("SELECT nif, nombre, direcc FROM clientes");
 			ResultSet res = pstm.executeQuery();
 			int i = 0;
 			while (res.next()) {
 				data[i][0] = res.getString("nif");
 				data[i][1] = res.getString("nombre");
-				data[i][2] = res.getString("direccion");
+				data[i][2] = res.getString("direcc");
 				i++;
 			}
 			res.close();
@@ -186,11 +187,11 @@ public class MetodosCliente extends Database{
              Cliente cliente=null;
              
         try {
-            String q = "SELECT nif, nombre, direccion FROM cliente WHERE nif = " + nif;
+            String q = "SELECT nif, nombre, direcc FROM clientes WHERE nif = " + nif;
             
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-            cliente = new Cliente(res.getString("nif"), res.getString("nombre"), res.getString("direccion"));        
+            cliente = new Cliente(res.getString("nif"), res.getString("nombre"), res.getString("direcc"));        
             pstm.execute();
             pstm.close();
                  

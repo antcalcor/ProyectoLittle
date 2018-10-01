@@ -144,10 +144,13 @@ public class ControladorCliente implements ActionListener, MouseListener{
 			if (fila > -1) {
 				
 				pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 0)));
-				pIni.jTextField2.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 1)));
-                                pIni.jTextField3.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 2)));
+				pIni.jTextField2.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 1)).trim());
+                                pIni.jTextField3.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 2)).trim());
 			}
-		}
+                        int fila2 = this.pIni.jTable1.rowAtPoint(e.getPoint());
+                        if (fila2 > -1){                
+                                pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 0)));             }
+                        }
 	}
 	
 	
