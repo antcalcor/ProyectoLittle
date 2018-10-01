@@ -36,7 +36,8 @@ public class ControladorCliente implements ActionListener, MouseListener{
     
     //CONSTRUCTOR DE CLASE
     public ControladorCliente(PantallaInicial pantallaInicial) {
-		this.pIni = pantallaInicial;
+            super();
+            this.pIni = pantallaInicial;
 	}
     
     //INICIAMOS
@@ -60,7 +61,7 @@ public class ControladorCliente implements ActionListener, MouseListener{
 		//Declaramos las acciones y escuchas al evento producido por el
 		//componente
 		
-		//TODO a�adir acciones y escuchas
+		// añadir acciones y escuchas
 		pIni.jButton4.setActionCommand("MODIFICAR");
 		pIni.jButton4.addActionListener(this);
 		pIni.jButton5.setActionCommand("INSERTAR");
@@ -72,22 +73,24 @@ public class ControladorCliente implements ActionListener, MouseListener{
 		pIni.jButton8.setActionCommand("BORRAR");
 		pIni.jButton8.addActionListener(this);
 		
-		/*pIni.ComprarEntrada.setLocationRelativeTo(null);
-		pIni.ConsultarCompras.setLocationRelativeTo(null);
+		pIni.jDialog1.setLocationRelativeTo(null);
+		/*pIni.ConsultarCompras.setLocationRelativeTo(null);
 		pIni.AgnadirOpinion.setLocationRelativeTo(null);
 		pIni.ConsultarCartelera.setLocationRelativeTo(null);*/
 		
                 pIni.jTable1.setModel(mCli.cogerClientesBBDDTodo());
 		
-		
 	}
     
+    @Override
         public void actionPerformed(ActionEvent e) {
 		switch (accionesCliente.valueOf(e.getActionCommand())) {
 		//PARA VOLVER A LA PANTALLA INICIAL
 		case VOLVER:
-			pIni.setVisible(true);
+                    
 			pIni.jDialog1.setVisible(false);
+                        pIni.setVisible(true);
+                        
 			break;
                  
                 //PARA INSERTAR UN CLIENTE        
