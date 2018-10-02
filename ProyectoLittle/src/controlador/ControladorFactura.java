@@ -116,7 +116,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 
                 Cliente cliente = new Cliente();
                 
-                mFac.devolverCliente(pIni.jComboBox1.getName(),cliente);
+                mFac.devolverCliente(pIni.jComboBox1.getSelectedItem().toString(),cliente);
                 pIni.jTextField4.setText(cliente.getNombre());
                 pIni.jTextField5.setText(cliente.getNIF());
                 pIni.jTextField6.setText(cliente.getDireccion());
@@ -125,7 +125,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 
             case ARTICULO:
                 
-                pIni.jTextField7.setText(pIni.jComboBox2.getName());
+                pIni.jTextField7.setText(pIni.jComboBox2.getSelectedItem().toString());
                 
         }
         
