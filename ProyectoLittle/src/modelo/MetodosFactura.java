@@ -88,4 +88,31 @@ public class MetodosFactura extends Database{
         }
     }
     
+    public double devolverPrecio(int codArt){
+        
+        String q = "SELECT precio FROM articulos WHERE CodArt='" + codArt + "'";
+
+        double precio=0;
+        
+        try{
+
+            PreparedStatement pstm = this.getConnection().prepareStatement(q);
+            ResultSet res = pstm.executeQuery();
+
+            precio = res.getDouble("precio");
+
+            pstm.execute();
+            pstm.close();
+            
+            return precio;
+
+        }catch (SQLException e){
+        System.err.println(e.getMessage());
+        
+        return precio;
+        
+        }
+        
+    }
+    
 }

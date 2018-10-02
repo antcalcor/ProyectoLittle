@@ -31,7 +31,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
     
     //Declaramos en un enum las acciones relacionadas con la factura
     public enum accionesFactura{
-        BUSCAR_CLI,BUSCAR_PROD,COMPRAR_PROD,CALCULAR_FAC,BORRAR_PROD,BUSCAR_FAC,BORRAR_FAC,GUARDAR_FAC,VOLVER,CLIENTE,ARTICULO;
+        BUSCAR_CLI,COMPRAR_PROD,CALCULAR_FAC,BORRAR_PROD,BUSCAR_FAC,BORRAR_FAC,GUARDAR_FAC,VOLVER,CLIENTE,ARTICULO;
     }
     
     //CONSTRUCTOR DE CLASE
@@ -86,8 +86,6 @@ public class ControladorFactura implements ActionListener, MouseListener{
         //añadimos acciones y escuchas de los componentes
         pIni.jButton14.setActionCommand("BUSCAR_CLI");
         pIni.jButton14.addActionListener(this);
-        pIni.jButton22.setActionCommand("BUSCAR_PROD");
-        pIni.jButton22.addActionListener(this);
         pIni.jButton15.setActionCommand("COMPRAR_PROD");
         pIni.jButton15.addActionListener(this);
         pIni.jButton19.setActionCommand("CALCULAR_FAC");
@@ -126,7 +124,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
             case ARTICULO:
                 
                 pIni.jTextField7.setText(pIni.jComboBox2.getSelectedItem().toString());
-                
+                pIni.jTextField11.setText(String.valueOf(mFac.devolverPrecio(Integer.parseInt(pIni.jTextField7.getText()))));
         }
         
     }
