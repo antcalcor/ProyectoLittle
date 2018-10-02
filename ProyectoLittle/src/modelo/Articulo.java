@@ -24,6 +24,10 @@ public class Articulo {
         nombre=nom;
         precio=prec;
     }
+
+    public Articulo() {
+
+    }
     
     public void setCodArt(int cod){
         codArt=cod;

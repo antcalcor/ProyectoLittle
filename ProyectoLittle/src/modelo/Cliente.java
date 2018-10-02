@@ -25,6 +25,10 @@ public class Cliente {
         
     }
     
+    public Cliente(){
+        
+    }
+    
     public void setNombre(String nom){
         nombre=nom;
     }

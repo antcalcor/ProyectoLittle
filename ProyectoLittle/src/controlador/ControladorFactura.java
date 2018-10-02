@@ -14,6 +14,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
+import modelo.Articulo;
+import modelo.Cliente;
 import modelo.Factura;
 import modelo.MetodosFactura;
 import vista.PantallaInicial;
@@ -29,7 +31,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
     
     //Declaramos en un enum las acciones relacionadas con la factura
     public enum accionesFactura{
-        BUSCAR_CLI,BUSCAR_PROD,COMPRAR_PROD,CALCULAR_FAC,BORRAR_PROD,BUSCAR_FAC,BORRAR_FAC,GUARDAR_FAC,VOLVER;
+        BUSCAR_CLI,BUSCAR_PROD,COMPRAR_PROD,CALCULAR_FAC,BORRAR_PROD,BUSCAR_FAC,BORRAR_FAC,GUARDAR_FAC,VOLVER,CLIENTE,ARTICULO;
     }
     
     //CONSTRUCTOR DE CLASE
@@ -56,14 +58,28 @@ public class ControladorFactura implements ActionListener, MouseListener{
         this.pIni.jTable3.addMouseListener(this);
         this.pIni.jTable3.setModel(new DefaultTableModel());
         
+        pIni.jComboBox1.addActionListener(this);
+        pIni.jComboBox1.setActionCommand("CLIENTE");
+        pIni.jComboBox2.addActionListener(this);
+        pIni.jComboBox2.setActionCommand("ARTICULO");
+        
         //rellenamos los jcombobox
         
         ArrayList<String> aux = new ArrayList<String>();
-        aux = mFac.rellenarJComboBox();
+        aux = mFac.nifClientes();
         
         for(int i=0;i<aux.size();i++){
             
             pIni.jComboBox1.addItem(aux.get(i));
+            
+        }
+        
+        ArrayList<Integer> aux1 = new ArrayList<Integer>();
+        aux1 = mFac.codigoArticulos();
+        
+        for(int i=0;i<aux.size();i++){
+            
+            pIni.jComboBox2.addItem(String.valueOf(aux.get(i)));
             
         }
         
@@ -93,8 +109,24 @@ public class ControladorFactura implements ActionListener, MouseListener{
     }
     
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actionPerformed(ActionEvent e) {
+    
+        switch (accionesFactura.valueOf(e.getActionCommand())){
+            case CLIENTE:
+                
+                Cliente cliente = new Cliente();
+                
+                cliente = mFac.devolverCliente(pIni.jComboBox1.getName());
+                
+                break;
+                
+            case ARTICULO:
+                
+                Articulo articulo = new Articulo();
+                
+                articulo = mFac.devolverArticulo(Integer.parseInt(pIni.jComboBox2.getName()));
+        }
+        
     }
 
     @Override
