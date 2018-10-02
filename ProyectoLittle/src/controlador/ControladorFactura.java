@@ -56,7 +56,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
         this.pIni.jTable3.setModel(new DefaultTableModel());
         
         //rellenamos los jcombobox
-        
+        mFac.rellenarJComboBox(pIni.jComboBox1);
         
         //añadimos acciones y escuchas de los componentes
         pIni.jButton14.setActionCommand("BUSCAR_CLI");
