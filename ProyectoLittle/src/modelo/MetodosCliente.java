@@ -30,7 +30,7 @@ public class MetodosCliente extends Database{
 			JOptionPane.showMessageDialog(null, "No has introducido todos los valores");
 		} else {
 			insertarClienteBBDD(nif, nombre, direccion);
-			JOptionPane.showMessageDialog(null, "Cliente añadido con exito");
+			
 			
 		}
 	}
@@ -39,7 +39,7 @@ public class MetodosCliente extends Database{
         public void insertarClienteBBDD(String nif, String nombre, String direccion) {
 			// se arma la consulta
 			String q = "INSERT INTO clientes (nif, nombre, direcc)" + "VALUES ('" + nif + "','" + nombre + "','"
-					+ direccion + "', 0)";
+					+ direccion + "')";
 			// se ejecuta la consulta
 			try {
 				PreparedStatement pstm = this.getConnection().prepareStatement(q);
@@ -47,7 +47,7 @@ public class MetodosCliente extends Database{
 				pstm.close();
                                 System.out.println("insertado");
 			} catch (SQLException e) {
-				System.err.println(e.getMessage());
+				JOptionPane.showMessageDialog(null, "NIF duplicado, no se ha podido añadir cliente");
 			}
 
 		}
@@ -90,7 +90,7 @@ public class MetodosCliente extends Database{
         //ACTUALIZAMOS CLIENTE EN LA BBDD
         public void actualizarClienteBBDD(String nif, String nombre, String direccion) {
 		String q = " UPDATE clientes " + "SET nombre='" + nombre
-				+ "', direcc= "+ direccion + " WHERE nif= '" + nif + " '";
+				+ "', direcc= '"+ direccion + "' WHERE nif= '" + nif + "'";
 
 		try {
 			PreparedStatement pstm = this.getConnection().prepareStatement(q);

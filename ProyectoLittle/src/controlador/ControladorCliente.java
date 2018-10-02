@@ -84,6 +84,10 @@ public class ControladorCliente implements ActionListener, MouseListener{
     
     @Override
         public void actionPerformed(ActionEvent e) {
+            
+            nombre = pIni.jTextField2.getText();
+            direccion = pIni.jTextField3.getText();
+            nif = pIni.jFormattedTextField1.getText();
 		switch (accionesCliente.valueOf(e.getActionCommand())) {
 		//PARA VOLVER A LA PANTALLA INICIAL
 		case VOLVER:
@@ -108,7 +112,9 @@ public class ControladorCliente implements ActionListener, MouseListener{
                         
                 //PARA BORRAR UN CLIENTE
 		case BORRAR:
-                        
+                        nombre = pIni.jTextField2.getText();
+                        direccion = pIni.jTextField3.getText();
+                        nif = pIni.jFormattedTextField1.getText();
                         mCli.eliminarCliente(nif);
 			pIni.jTable1.setModel(mCli.cogerClientesBBDDTodo());
                         
@@ -116,8 +122,11 @@ public class ControladorCliente implements ActionListener, MouseListener{
                         
                 //PARA MODIFICAR UN CLIENTE
 		case MODIFICAR:
-
+                    nombre = pIni.jTextField2.getText();
+                    direccion = pIni.jTextField3.getText();
+                    nif = pIni.jFormattedTextField1.getText();    
                     mCli.modificarCliente(nif, nombre, direccion);
+                    pIni.jTable1.setModel(mCli.cogerClientesBBDDTodo());
 			
 			break;
                         
@@ -142,44 +151,48 @@ public class ControladorCliente implements ActionListener, MouseListener{
 		{
 			int fila = this.pIni.jTable1.rowAtPoint(e.getPoint());
 			if (fila > -1) {
-				
+				nif = String.valueOf(this.pIni.jTable1.getValueAt(fila, 0));
 				pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 0)));
 				pIni.jTextField2.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 1)).trim());
                                 pIni.jTextField3.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 2)).trim());
 			}
-                        int fila2 = this.pIni.jTable1.rowAtPoint(e.getPoint());
+                        /*int fila2 = this.pIni.jTable1.rowAtPoint(e.getPoint());
                         if (fila2 > -1){                
-                                pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 0)));             }
+                                pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila2, 0)));             }
                         }
-	}
+                        int fila3 = this.pIni.jTable1.rowAtPoint(e.getPoint());
+                                if (fila3 > -1){                
+                                        pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila3, 0)));             }
+                        */
+                        }}
 	
 	
     @Override
     public void mouseClicked(MouseEvent e) {
             // para que tenga en cuenta el click en la tabla
-            presionarJTable1(e);
+            //presionarJTable1(e);
                 
     }
   
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        presionarJTable1(e);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         //To change body of generated methods, choose Tools | Templates.
     }
     
     

@@ -13,6 +13,7 @@ public class Database {
       try{
          //obtenemos el driver de para mysql
          Class.forName("com.mysql.jdbc.Driver");
+         //com.mysql.cj.jdbc.Driver
          //obtenemos la conexión
          conn = DriverManager.getConnection(url,login,password);
          if (conn!=null){
