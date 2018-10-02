@@ -65,11 +65,9 @@ public class MetodosFactura extends Database{
         }
     }
 
-    public Cliente devolverCliente(String dni){
+    public void devolverCliente(String dni,Cliente cliente){
 
-        String q = "SELECT nombre, direcc FROM clientes WHERE dni='" + dni + "'";
-
-        Cliente aux = new Cliente();
+        String q = "SELECT nombre, direcc FROM clientes WHERE nif='" + dni + "'";
 
         try{
 
@@ -77,18 +75,16 @@ public class MetodosFactura extends Database{
             ResultSet res = pstm.executeQuery();
             int i=0;
             while (res.next()){
-                aux.setNombre(res.getString("nombre"));
-                aux.setDireccion(res.getString("direcc"));
-                aux.setNIF(dni);
+                cliente.setNombre(res.getString("nombre"));
+                cliente.setDireccion(res.getString("direcc"));
+                cliente.setNIF(dni);
                 i++;
             }
             pstm.execute();
             pstm.close();
-            return aux;
 
         }catch (SQLException e){
         System.err.println(e.getMessage());
-        return aux;
         }
     }
     
