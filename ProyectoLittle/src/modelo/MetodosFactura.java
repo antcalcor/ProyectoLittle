@@ -16,9 +16,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class MetodosFactura extends Database{
-    
+    //Creamos un array para guardar las lineas de la factura
     public static ArrayList<ArtFact> articulosFactura = new ArrayList<ArtFact>();
     public ArrayList<String> nifClientes(){
+      
         
         ArrayList<String> aux = new ArrayList<String>();
         String q = "SELECT nif FROM clientes";
@@ -66,6 +67,7 @@ public class MetodosFactura extends Database{
         }
     }
 
+    //Método para sacar los datos de un cliente
     public void devolverCliente(String dni,Cliente cliente){
 
         String q = "SELECT nombre, direcc FROM clientes WHERE nif='" + dni + "'";
@@ -89,6 +91,7 @@ public class MetodosFactura extends Database{
         }
     }
     
+    //Método para sacar el precio de un artículo
     public double devolverPrecio(int codArt){
         
         String q = "SELECT precio FROM articulos WHERE CodArt='" + codArt + "'";
@@ -120,9 +123,10 @@ public class MetodosFactura extends Database{
         
     }
     
+    //Método para añadir un artículo al array de lineas de una factura
     public void agnadirArticulo(int codArt,int cantidad,double precio) throws SQLException{
         
-        String q = "SELECT nombreArt FROM articulos WHERE CodArt = '" + codArt + "'";
+        String q = "SELECT nombreArt FROM articulos WHERE CodArt = " + codArt ;
         
         String q2 = "SELECT max(codFact) FROM artfact";
         
@@ -156,6 +160,7 @@ public class MetodosFactura extends Database{
         
     }
     
+    //Método para añadir los artículos a la tabla
     public DefaultTableModel agnadirArticulosTabla(){
         
         DefaultTableModel tablemodel = new DefaultTableModel();
@@ -163,14 +168,16 @@ public class MetodosFactura extends Database{
         String[] columNames = {"Codigo","Nombre","Cantidad","Precio"};
         
         Object[][] data = new String[registros][4];
+        System.out.println("prueba tabla 1");
         
         for(int i=0;i>registros;i++){
-            data[i][0] = articulosFactura.get(i).getCodArt();
+            System.out.println("prueba tabla 2");
+            data[i][0] = String.valueOf(articulosFactura.get(i).getCodArt());
             data[i][1] = articulosFactura.get(i).getNombreArt();
-            data[i][2] = articulosFactura.get(i).getCantidad();
-            data[i][3] = articulosFactura.get(i).getPrecio();
+            data[i][2] = String.valueOf(articulosFactura.get(i).getCantidad());
+            data[i][3] = String.valueOf(articulosFactura.get(i).getPrecio());
         }
-        
+        System.out.println("prueba tabla 3");
         tablemodel.setDataVector(data, columNames);
         
         return tablemodel;

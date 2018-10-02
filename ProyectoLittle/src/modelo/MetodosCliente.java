@@ -137,21 +137,23 @@ public class MetodosCliente extends Database{
     
         //RELLENAR TABLA DE CLIENTES
          public DefaultTableModel cogerClientesBBDDTodo() {
-		System.out.println("pruebaaaaaaaa");
+		
 		DefaultTableModel tablemodel = new DefaultTableModel();
 		int registros = 0;
 		PreparedStatement pstm = null;
 		String[] columNames = { "NIF", "Nombre", "Direccion" };
-		// obtenemos la cantidad de registros existentes en la tabla y se almacena en la
+		
+                // obtenemos la cantidad de registros existentes en la tabla y se almacena en la
 		// variable "registros"
 		// para formar la matriz de datos
 		try {
-			System.out.println("pruebass");
+			
 			pstm = getConnection().prepareStatement("SELECT count(*) as total FROM clientes");
 			ResultSet res = pstm.executeQuery();
 			res.next();
 			registros = res.getInt("total");
 			res.close();
+                        
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
