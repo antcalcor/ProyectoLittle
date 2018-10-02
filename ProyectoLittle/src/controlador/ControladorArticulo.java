@@ -89,9 +89,9 @@ public class ControladorArticulo implements ActionListener, MouseListener{
     @Override
         public void actionPerformed(ActionEvent e) {
             
-            nombre = pIni.jTextField1.getText();
+            /*nombre = pIni.jTextField1.getText();
             codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
-            precio = Double.parseDouble(pIni.jFormattedTextField5.getText());
+            precio = Double.parseDouble(pIni.jFormattedTextField5.getText());*/
 		switch (accionesArticulo.valueOf(e.getActionCommand())) {
 		//PARA VOLVER A LA PANTALLA INICIAL
 		case VOLVER:

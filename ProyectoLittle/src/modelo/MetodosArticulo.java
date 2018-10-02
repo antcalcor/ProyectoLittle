@@ -164,15 +164,19 @@ public class MetodosArticulo extends Database{
 			pstm = this.getConnection()
 					.prepareStatement("SELECT CodArt, nombreArt, precio FROM articulos");
 			ResultSet res = pstm.executeQuery();
-			int i = 0;
+			System.out.println("hasta aquí2");
+                        int i = 0;
 			while (res.next()) {
-				data[i][0] = res.getInt("CodArt");
+                            System.out.println("hasta aquí3");
+				data[i][0] = res.getString("CodArt");
 				data[i][1] = res.getString("nombreArt");
-				data[i][2] = res.getDouble("precio");
+				data[i][2] = Double.parseDouble(res.getString("precio"));
 				i++;
 			}
+                        
 			res.close();
 			// se anade la matriz de datos en el DefaultTableModel
+                        System.out.println("hasta aquí4");
 			tablemodel.setDataVector(data, columNames);
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
