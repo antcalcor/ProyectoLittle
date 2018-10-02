@@ -474,7 +474,7 @@ public class PantallaInicial extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jLabel28.setText("Precio:");
+        jLabel28.setText("Precio/Unidad:");
 
         javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
         jDialog3.getContentPane().setLayout(jDialog3Layout);

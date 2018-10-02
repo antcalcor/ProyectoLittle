@@ -1110,7 +1110,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel28">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Precio:"/>
+            <Property name="text" type="java.lang.String" value="Precio/Unidad:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField11">
