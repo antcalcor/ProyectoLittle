@@ -72,7 +72,7 @@ DROP TABLE IF EXISTS `proyectolittle`.`articulos` ;
 
 CREATE TABLE IF NOT EXISTS `proyectolittle`.`articulos` (
   
-`CodArt` INT NOT NULL AUTO_INCREMENT,
+`CodArt` INT NOT NULL,
   
 `nombreArt` VARCHAR(45) NULL,
   
