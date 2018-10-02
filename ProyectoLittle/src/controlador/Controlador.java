@@ -82,7 +82,7 @@ public class Controlador implements ActionListener, MouseListener {
             case FACTURA:
                 
                 pIni.setVisible(false);
-                pIni.jDialog3.setVisible(true);
+                new ControladorFactura (pIni).Iniciar();
                 
                 break;
         }

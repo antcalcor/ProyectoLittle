@@ -45,7 +45,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                 SwingUtilities.updateComponentTreeUI(pIni);
                 pIni.setVisible(false);
-                pIni.jDialog1.setVisible(true);
+                pIni.jDialog3.setVisible(true);
                 pIni.setLocationRelativeTo(null);
         } catch (UnsupportedLookAndFeelException ex) {
         } catch (ClassNotFoundException ex) {
