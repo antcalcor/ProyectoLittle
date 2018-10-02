@@ -187,11 +187,18 @@ public class MetodosCliente extends Database{
              Cliente cliente=null;
              
         try {
-            String q = "SELECT nif, nombre, direcc FROM clientes WHERE nif = " + nif;
+            String q = "SELECT nombre, direcc FROM clientes WHERE nif = " + nif;
             
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-            cliente = new Cliente(res.getString("nif"), res.getString("nombre"), res.getString("direcc"));        
+            int i=0;
+            while (res.next()){
+                cliente.setNIF(nif);
+                cliente.setNombre(res.getString("nombre"));
+                cliente.setDireccion(res.getString("precio"));
+                i++;
+            }
+           // cliente = new Cliente(res.getString("nif"), res.getString("nombre"), res.getString("direcc"));        
             pstm.execute();
             pstm.close();
                  

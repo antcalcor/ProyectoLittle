@@ -104,6 +104,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 		case INSERTAR:
                     try{
                         
+                        
                         //cogemos los datos de los campos		
 			nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
@@ -124,9 +125,9 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 		case BORRAR:
                     try{
                         
-                        nombre = pIni.jTextField1.getText();
+                        //nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
-                        precio = Double.parseDouble(pIni.campoPrecio.getText());
+                        //precio = Double.parseDouble(pIni.campoPrecio.getText());
                         mArt.eliminarArticulo(codArt);
 			pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
                         
@@ -156,12 +157,14 @@ public class ControladorArticulo implements ActionListener, MouseListener{
                     			
 			break;
                         
-                //PARA BUSCAR UN CLIENTE
+                //PARA BUSCAR UN ARTICULO
                 case BUSCAR:
 
-                    articulo = mArt.buscarArticulo(codArt);
+                    Articulo articulo=new Articulo ();
+                    int codArt1 = Integer.parseInt(pIni.jFormattedTextField3.getText());
+                    mArt.buscarArticulo(articulo, codArt1);
                     pIni.jTextField1.setText(articulo.getNombre());
-                    pIni.jFormattedTextField3.setText(String.valueOf(articulo.getCodArt()));
+                    pIni.jFormattedTextField4.setText(pIni.jFormattedTextField3.getText());
                     pIni.campoPrecio.setText(String.valueOf(articulo.getPrecio()));
 		
 			break;

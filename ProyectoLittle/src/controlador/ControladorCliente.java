@@ -132,8 +132,10 @@ public class ControladorCliente implements ActionListener, MouseListener{
                         
                 //PARA BUSCAR UN CLIENTE
                 case BUSCAR:
-
-                    cliente = mCli.buscarCliente(nif);
+                    
+                    Cliente cliente = new Cliente();
+                    String nif1 = pIni.jFormattedTextField2.getText();
+                    cliente = mCli.buscarCliente(nif1);
                     pIni.jTextField2.setText(cliente.getNombre());
                     pIni.jFormattedTextField1.setText(cliente.getNIF());
                     pIni.jTextField3.setText(cliente.getDireccion());
