@@ -60,7 +60,6 @@ public class PantallaInicial extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jTextField1 = new javax.swing.JTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
         campoPrecio = new javax.swing.JTextField();
         jDialog3 = new javax.swing.JDialog();
         jLabel12 = new javax.swing.JLabel();
@@ -276,8 +275,6 @@ public class PantallaInicial extends javax.swing.JFrame {
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
-        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####.##"))));
-
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
@@ -313,7 +310,6 @@ public class PantallaInicial extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel11))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jFormattedTextField5)
                             .addComponent(jTextField1)
                             .addComponent(jFormattedTextField4))
                         .addGap(45, 45, 45))
@@ -343,9 +339,7 @@ public class PantallaInicial extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jLabel7)
@@ -783,7 +777,6 @@ public class PantallaInicial extends javax.swing.JFrame {
     public javax.swing.JFormattedTextField jFormattedTextField2;
     public javax.swing.JFormattedTextField jFormattedTextField3;
     public javax.swing.JFormattedTextField jFormattedTextField4;
-    public javax.swing.JFormattedTextField jFormattedTextField5;
     public javax.swing.JFormattedTextField jFormattedTextField6;
     public javax.swing.JFormattedTextField jFormattedTextField7;
     private javax.swing.JLabel jLabel1;

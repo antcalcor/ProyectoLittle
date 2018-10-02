@@ -79,9 +79,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 		pIni.jButton9.addActionListener(this);
 		
 		pIni.jDialog2.setLocationRelativeTo(null);
-		/*pIni.ConsultarCompras.setLocationRelativeTo(null);
-		pIni.AgnadirOpinion.setLocationRelativeTo(null);
-		pIni.ConsultarCartelera.setLocationRelativeTo(null);*/
+		
 		
                 pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
 		
@@ -104,7 +102,9 @@ public class ControladorArticulo implements ActionListener, MouseListener{
                  
                 //PARA INSERTAR UN CLIENTE        
 		case INSERTAR:
-			//cogemos los datos de los campos		
+                    try{
+                        
+                        //cogemos los datos de los campos		
 			nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
                         precio = Double.parseDouble(pIni.campoPrecio.getText());
@@ -112,16 +112,29 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 			                            
 			mArt.CrearArticulo(codArt, nombre, precio);  
 			pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
+                        
+                    }catch (NumberFormatException a){
+                        JOptionPane.showMessageDialog(null, "El precio tiene que ser un número y el decimal se separa con '.'");
+                    }
+			
 			
 			break;
                         
                 //PARA BORRAR UN CLIENTE
 		case BORRAR:
+                    try{
+                        
                         nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
                         precio = Double.parseDouble(pIni.campoPrecio.getText());
                         mArt.eliminarArticulo(codArt);
 			pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
+                        
+                    }   catch (NumberFormatException a){
+                        JOptionPane.showMessageDialog(null, "El precio tiene que ser un número y el decimal se separa con '.'");
+                    }                 
+
+                        
                         
 			break;
                         
@@ -129,13 +142,15 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 		case MODIFICAR:
                     
                     try{
+                        
                         nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
                         precio = Double.parseDouble(pIni.campoPrecio.getText());
                         mArt.modificarArticulo(codArt, nombre, precio);
                         pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
+                        
                     }catch (NumberFormatException a){
-                        JOptionPane.showMessageDialog(null, "El precio tiene que ser un número y el decimal separa con '.'");
+                        JOptionPane.showMessageDialog(null, "El precio tiene que ser un número y el decimal se separa con '.'");
                     }
                       
                     			
@@ -146,7 +161,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 
                     articulo = mArt.buscarArticulo(codArt);
                     pIni.jTextField1.setText(articulo.getNombre());
-                    pIni.jFormattedTextField4.setText(String.valueOf(articulo.getCodArt()));
+                    pIni.jFormattedTextField3.setText(String.valueOf(articulo.getCodArt()));
                     pIni.campoPrecio.setText(String.valueOf(articulo.getPrecio()));
 		
 			break;

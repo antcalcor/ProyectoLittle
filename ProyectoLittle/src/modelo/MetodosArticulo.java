@@ -135,7 +135,7 @@ public class MetodosArticulo extends Database{
 		}
 	}
     
-        //RELLENAR TABLA DE CLIENTES
+        //RELLENAR TABLA DE ARTICULOS
          public DefaultTableModel cogerArticulosBBDDTodo() {
 		
 		DefaultTableModel tablemodel = new DefaultTableModel();
@@ -183,7 +183,7 @@ public class MetodosArticulo extends Database{
 	}
          
          
-         //METODO PARA BUSCAR CLIENTES
+         //METODO PARA BUSCAR ARTICULOS
          public Articulo buscarArticulo(int codArt){
              
              Articulo articulo=null;
@@ -193,7 +193,10 @@ public class MetodosArticulo extends Database{
             
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-            articulo = new Articulo(res.getInt("CodArt"), res.getString("nombreArt"), res.getDouble("precio"));        
+            int cod= Integer.parseInt(res.getString("CodArt"));
+            String nom = res.getString("nombreArt");
+            double prec = Double.parseDouble(res.getString("precio"));
+            articulo = new Articulo(cod, nom , prec);        
             pstm.execute();
             pstm.close();
                  
