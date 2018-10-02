@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -56,7 +57,15 @@ public class ControladorFactura implements ActionListener, MouseListener{
         this.pIni.jTable3.setModel(new DefaultTableModel());
         
         //rellenamos los jcombobox
-        mFac.rellenarJComboBox(pIni.jComboBox1);
+        
+        ArrayList<String> aux = new ArrayList<String>();
+        aux = mFac.rellenarJComboBox();
+        
+        for(int i=0;i<aux.size();i++){
+            
+            pIni.jComboBox1.addItem(aux.get(i));
+            
+        }
         
         //añadimos acciones y escuchas de los componentes
         pIni.jButton14.setActionCommand("BUSCAR_CLI");

@@ -8,6 +8,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 
 /**
@@ -16,8 +17,9 @@ import javax.swing.JComboBox;
  */
 public class MetodosFactura extends Database{
     
-    public void rellenarJComboBox(JComboBox jcombobox){
+    public ArrayList<String> rellenarJComboBox(){
         
+        ArrayList<String> aux = new ArrayList<String>();
         String q = "SELECT nif FROM clientes";
         
         try{
@@ -25,15 +27,17 @@ public class MetodosFactura extends Database{
             ResultSet res = pstm.executeQuery();
             int i=0;
             while (res.next()){
-                jcombobox.addItem(res.getString("nif"));
+                aux.add(res.getString("nif"));
                 i++;
             }
             pstm.execute();
             pstm.close();
+            
+            return aux;
+
         }catch (SQLException e){
             System.err.println(e.getMessage());
+            return aux;
         }
-        
     }
-    
 }
