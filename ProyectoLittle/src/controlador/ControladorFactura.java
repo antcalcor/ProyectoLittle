@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -31,7 +34,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
     
     //Declaramos en un enum las acciones relacionadas con la factura
     public enum accionesFactura{
-        BUSCAR_CLI,COMPRAR_PROD,CALCULAR_FAC,BORRAR_PROD,BUSCAR_FAC,BORRAR_FAC,GUARDAR_FAC,VOLVER,CLIENTE,ARTICULO;
+        BUSCAR_CLI,BUSCAR_ART,COMPRAR_PROD,CALCULAR_FAC,BORRAR_PROD,BUSCAR_FAC,BORRAR_FAC,GUARDAR_FAC,VOLVER,CLIENTE,ARTICULO;
     }
     
     //CONSTRUCTOR DE CLASE
@@ -100,6 +103,8 @@ public class ControladorFactura implements ActionListener, MouseListener{
         pIni.jButton17.addActionListener(this);
         pIni.jButton18.setActionCommand("VOLVER");
         pIni.jButton18.addActionListener(this);
+        pIni.jButton22.setActionCommand("BUSCAR_ART");
+        pIni.jButton22.addActionListener(this);
         
         pIni.jDialog3.setLocationRelativeTo(null);
         
@@ -127,6 +132,8 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 pIni.jTextField7.setText(pIni.jComboBox2.getSelectedItem().toString());
                 pIni.jTextField11.setText(String.valueOf(mFac.devolverPrecio(Integer.parseInt(pIni.jTextField7.getText()))));
         
+                break;
+                
             case BUSCAR_CLI:
                 
                 Cliente cliente1 = new Cliente();
@@ -138,8 +145,30 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 
                 break;
                 
-            case BUSCAR_FAC:
+            case BUSCAR_ART:
                 
+                pIni.jTextField11.setText(String.valueOf(mFac.devolverPrecio(Integer.parseInt(pIni.jTextField7.getText()))));
+                pIni.jComboBox2.setSelectedItem(pIni.jTextField7.getText());
+                
+                break;
+            case VOLVER:
+                    
+                pIni.jDialog3.setVisible(false);
+                pIni.setVisible(true);
+                        
+                break;
+                
+            case COMPRAR_PROD:
+                
+                try {
+                    mFac.agnadirArticulo(Integer.parseInt(pIni.jTextField7.getText()),Integer.parseInt(pIni.jFormattedTextField7.getText()),Double.parseDouble(pIni.jButton11.getText()));
+                
+                    //TODO metodo que añada a la tabla o que refresque la tabla con el arraylist
+                
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorFactura.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 break;
             
         }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class MetodosFactura extends Database{
     
+    public static ArrayList<ArtFact> articulosFactura;
     public ArrayList<String> nifClientes(){
         
         ArrayList<String> aux = new ArrayList<String>();
@@ -97,9 +98,13 @@ public class MetodosFactura extends Database{
 
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-
-            precio = res.getDouble("precio");
-
+            
+            int i=0;
+            
+            while(res.next()){
+                precio = res.getDouble("precio");
+                i++;
+            }
             pstm.execute();
             pstm.close();
             
@@ -111,6 +116,42 @@ public class MetodosFactura extends Database{
         return precio;
         
         }
+        
+    }
+    
+    public void agnadirArticulo(int codArt,int cantidad,double precio) throws SQLException{
+        
+        String q = "SELECT nombreArt FROM articulos WHERE CodArt = '" + codArt + "'";
+        
+        String q2 = "SELECT max(codFact) FROM artfact";
+        
+        PreparedStatement pstm = this.getConnection().prepareStatement(q);
+        ResultSet res = pstm.executeQuery();
+        
+        int codFact=0;
+        String nombreArt="";
+        int i=0;
+        while(res.next()){
+            
+            nombreArt=res.getString("nombreArt");
+            i++;
+        }
+        pstm.execute();
+        pstm.close();
+        
+        PreparedStatement pstm2 = this.getConnection().prepareStatement(q2);
+        ResultSet res2 = pstm2.executeQuery(q2);
+        
+        i=0;
+        
+        while(res2.next()){
+            
+            codFact=res.getInt("max(codFact");
+            
+        }
+        
+        ArtFact articulo = new ArtFact(codArt,codFact+1,nombreArt,cantidad,precio);
+        articulosFactura.add(articulo);
         
     }
     
