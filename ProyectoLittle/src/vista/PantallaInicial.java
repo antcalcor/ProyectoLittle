@@ -235,6 +235,8 @@ public class PantallaInicial extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        jDialog2.setMinimumSize(new java.awt.Dimension(800, 600));
+
         jButton9.setText("Borrar");
 
         jLabel7.setText("Codigo a Buscar:");
@@ -349,6 +351,8 @@ public class PantallaInicial extends javax.swing.JFrame {
                     .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
+
+        jDialog3.setMinimumSize(new java.awt.Dimension(1000, 800));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel12.setText("FACTURA");
