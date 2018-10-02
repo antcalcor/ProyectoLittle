@@ -515,7 +515,7 @@
     <Container class="javax.swing.JDialog" name="jDialog3">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1000, 800]"/>
+          <Dimension value="[1000, 700]"/>
         </Property>
       </Properties>
       <AuxValues>

@@ -355,7 +355,7 @@ public class PantallaInicial extends javax.swing.JFrame {
                 .addGap(43, 43, 43))
         );
 
-        jDialog3.setMinimumSize(new java.awt.Dimension(1000, 800));
+        jDialog3.setMinimumSize(new java.awt.Dimension(1000, 700));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel12.setText("FACTURA");
