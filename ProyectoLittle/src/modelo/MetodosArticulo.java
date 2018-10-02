@@ -38,8 +38,8 @@ public class MetodosArticulo extends Database{
         //INSERTAR ARTICULO
         public void insertarArticuloBBDD(int codArt, String nombre, double precio) {
 			// se arma la consulta
-			String q = "INSERT INTO articulos (CodArt, nombreArt, precio)" + "VALUES ('" + codArt + "','" + nombre + "','"
-					+ precio + "')";
+			String q = "INSERT INTO articulos (CodArt, nombreArt, precio)" + "VALUES ('" + codArt + "','" + nombre + "',"
+					+ precio + ")";
 			// se ejecuta la consulta
 			try {
 				PreparedStatement pstm = this.getConnection().prepareStatement(q);
@@ -137,7 +137,7 @@ public class MetodosArticulo extends Database{
     
         //RELLENAR TABLA DE CLIENTES
          public DefaultTableModel cogerArticulosBBDDTodo() {
-		System.out.println("pruebaaaaaaaa");
+		
 		DefaultTableModel tablemodel = new DefaultTableModel();
 		int registros = 0;
 		PreparedStatement pstm = null;
@@ -146,13 +146,13 @@ public class MetodosArticulo extends Database{
 		// variable "registros"
 		// para formar la matriz de datos
 		try {
-			System.out.println("pruebass");
+			
 			pstm = getConnection().prepareStatement("SELECT count(*) as total FROM articulos");
 			ResultSet res = pstm.executeQuery();
 			res.next();
 			registros = res.getInt("total");
 			res.close();
-                        System.out.println("hasta aquí");
+                        
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -164,20 +164,17 @@ public class MetodosArticulo extends Database{
 			pstm = this.getConnection()
 					.prepareStatement("SELECT CodArt, nombreArt, precio FROM articulos");
 			ResultSet res = pstm.executeQuery();
-			System.out.println("hasta aquí2");
-                        int i = 0;
+			int i = 0;
 			while (res.next()) {
-                            System.out.println("hasta aquí3");
-				data[i][0] = res.getString("CodArt");
+                                data[i][0] = res.getString("CodArt");
 				data[i][1] = res.getString("nombreArt");
-				data[i][2] = Double.parseDouble(res.getString("precio"));
+				data[i][2] = res.getString("precio");
 				i++;
 			}
                         
 			res.close();
 			// se anade la matriz de datos en el DefaultTableModel
-                        System.out.println("hasta aquí4");
-			tablemodel.setDataVector(data, columNames);
+                        tablemodel.setDataVector(data, columNames);
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}

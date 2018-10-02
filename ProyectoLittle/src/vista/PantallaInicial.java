@@ -61,6 +61,7 @@ public class PantallaInicial extends javax.swing.JFrame {
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jTextField1 = new javax.swing.JTextField();
         jFormattedTextField5 = new javax.swing.JFormattedTextField();
+        campoPrecio = new javax.swing.JTextField();
         jDialog3 = new javax.swing.JDialog();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -275,7 +276,7 @@ public class PantallaInicial extends javax.swing.JFrame {
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
-        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####.##"))));
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
@@ -299,21 +300,26 @@ public class PantallaInicial extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDialog2Layout.createSequentialGroup()
-                        .addComponent(jButton10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(jButton9)
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton13))
-                    .addGroup(jDialog2Layout.createSequentialGroup()
                         .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jFormattedTextField5)
-                    .addComponent(jTextField1)
-                    .addComponent(jFormattedTextField4))
-                .addGap(45, 45, 45))
+                            .addGroup(jDialog2Layout.createSequentialGroup()
+                                .addComponent(jButton10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                .addComponent(jButton9)
+                                .addGap(35, 35, 35)
+                                .addComponent(jButton13))
+                            .addGroup(jDialog2Layout.createSequentialGroup()
+                                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jFormattedTextField5)
+                            .addComponent(jTextField1)
+                            .addComponent(jFormattedTextField4))
+                        .addGap(45, 45, 45))
+                    .addGroup(jDialog2Layout.createSequentialGroup()
+                        .addComponent(campoPrecio)
+                        .addContainerGap())))
             .addGroup(jDialog2Layout.createSequentialGroup()
                 .addGap(330, 330, 330)
                 .addComponent(jLabel8)
@@ -337,6 +343,8 @@ public class PantallaInicial extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(campoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
                         .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
@@ -743,6 +751,7 @@ public class PantallaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextField campoPrecio;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton10;
     public javax.swing.JButton jButton11;

@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -106,7 +107,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 			//cogemos los datos de los campos		
 			nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
-                        precio = Double.parseDouble(pIni.jFormattedTextField5.getText());
+                        precio = Double.parseDouble(pIni.campoPrecio.getText());
 			System.out.println(nombre);
 			                            
 			mArt.CrearArticulo(codArt, nombre, precio);  
@@ -118,7 +119,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 		case BORRAR:
                         nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
-                        precio = Double.parseDouble(pIni.jFormattedTextField5.getText());
+                        precio = Double.parseDouble(pIni.campoPrecio.getText());
                         mArt.eliminarArticulo(codArt);
 			pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
                         
@@ -126,12 +127,18 @@ public class ControladorArticulo implements ActionListener, MouseListener{
                         
                 //PARA MODIFICAR UN CLIENTE
 		case MODIFICAR:
-                    nombre = pIni.jTextField1.getText();
-                    codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
-                    precio = Double.parseDouble(pIni.jFormattedTextField5.getText());   
-                    mArt.modificarArticulo(codArt, nombre, precio);
-                    pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
-			
+                    
+                    try{
+                        nombre = pIni.jTextField1.getText();
+                        codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
+                        precio = Double.parseDouble(pIni.campoPrecio.getText());
+                        mArt.modificarArticulo(codArt, nombre, precio);
+                        pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
+                    }catch (NumberFormatException a){
+                        JOptionPane.showMessageDialog(null, "El precio tiene que ser un número y el decimal separa con '.'");
+                    }
+                      
+                    			
 			break;
                         
                 //PARA BUSCAR UN CLIENTE
@@ -140,7 +147,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
                     articulo = mArt.buscarArticulo(codArt);
                     pIni.jTextField1.setText(articulo.getNombre());
                     pIni.jFormattedTextField4.setText(String.valueOf(articulo.getCodArt()));
-                    pIni.jFormattedTextField5.setText(String.valueOf(articulo.getPrecio()));
+                    pIni.campoPrecio.setText(String.valueOf(articulo.getPrecio()));
 		
 			break;
                         
@@ -157,8 +164,8 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 			if (fila > -1) {
 				//codArt = String.valueOf(this.pIni.jTable2.getValueAt(fila, 0));
 				pIni.jFormattedTextField4.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 0)));
-				pIni.jTextField1.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 1)).trim());
-                                pIni.jFormattedTextField5.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 2)).trim());
+				pIni.jTextField1.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 1)));
+                                pIni.campoPrecio.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 2)));
 			}
                         /*int fila2 = this.pIni.jTable1.rowAtPoint(e.getPoint());
                         if (fila2 > -1){                
