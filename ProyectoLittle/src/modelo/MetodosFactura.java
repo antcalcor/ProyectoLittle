@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 public class MetodosFactura extends Database{
     
-    public static ArrayList<ArtFact> articulosFactura;
+    public static ArrayList<ArtFact> articulosFactura = new ArrayList<ArtFact>();
     public ArrayList<String> nifClientes(){
         
         ArrayList<String> aux = new ArrayList<String>();
@@ -146,13 +147,33 @@ public class MetodosFactura extends Database{
         
         while(res2.next()){
             
-            codFact=res.getInt("max(codFact");
+            codFact=res2.getInt("max(codFact)");
             
         }
         
         ArtFact articulo = new ArtFact(codArt,codFact+1,nombreArt,cantidad,precio);
         articulosFactura.add(articulo);
         
+    }
+    
+    public DefaultTableModel agnadirArticulosTabla(){
+        
+        DefaultTableModel tablemodel = new DefaultTableModel();
+        int registros=articulosFactura.size();
+        String[] columNames = {"Codigo","Nombre","Cantidad","Precio"};
+        
+        Object[][] data = new String[registros][4];
+        
+        for(int i=0;i>registros;i++){
+            data[i][0] = articulosFactura.get(i).getCodArt();
+            data[i][1] = articulosFactura.get(i).getNombreArt();
+            data[i][2] = articulosFactura.get(i).getCantidad();
+            data[i][3] = articulosFactura.get(i).getPrecio();
+        }
+        
+        tablemodel.setDataVector(data, columNames);
+        
+        return tablemodel;
     }
     
 }

@@ -21,6 +21,7 @@ import modelo.Articulo;
 import modelo.Cliente;
 import modelo.Factura;
 import modelo.MetodosFactura;
+import static modelo.MetodosFactura.articulosFactura;
 import vista.PantallaInicial;
 
 /**
@@ -85,6 +86,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
             pIni.jComboBox2.addItem(String.valueOf(aux1.get(i)));
             
         }
+        //voy a añadir un elemento vacio al arraylist
         
         //añadimos acciones y escuchas de los componentes
         pIni.jButton14.setActionCommand("BUSCAR_CLI");
@@ -108,7 +110,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
         
         pIni.jDialog3.setLocationRelativeTo(null);
         
-        //TODO pIni.jTable3.setModel(mFac.cogerFacturasBBDDTodo());
+        pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
     }
     
     @Override
@@ -160,14 +162,20 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 
             case COMPRAR_PROD:
                 
+                int cod,cantidad;
+                double precio;
+                
+                cod = Integer.parseInt(pIni.jTextField7.getText());
+                cantidad = Integer.parseInt(pIni.jFormattedTextField7.getText());
+                precio = Double.parseDouble(pIni.jTextField11.getText());
+
                 try {
-                    mFac.agnadirArticulo(Integer.parseInt(pIni.jTextField7.getText()),Integer.parseInt(pIni.jFormattedTextField7.getText()),Double.parseDouble(pIni.jButton11.getText()));
-                
-                    //TODO metodo que añada a la tabla o que refresque la tabla con el arraylist
-                
+                    mFac.agnadirArticulo(cod,cantidad,precio);
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorFactura.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+                pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
 
                 break;
             
