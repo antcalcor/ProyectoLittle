@@ -75,7 +75,7 @@ public class Controlador implements ActionListener, MouseListener {
             case ARTICULO:
                 
                 pIni.setVisible(false);
-                pIni.jDialog2.setVisible(true);
+                new ControladorArticulo (pIni).Iniciar();
                 
                 break;
                 

@@ -13,16 +13,24 @@ public class Articulo {
     
     private int codArt;
     
-    private static int aux=1;
+    //private static int aux=1;
     
     private String nombre;
     
     private double precio;
     
-    public Articulo(String nom, double prec){
-        codArt=aux++;
+    public Articulo(int codArt, String nom, double prec){
+        this.codArt=codArt;
         nombre=nom;
         precio=prec;
+    }
+    
+    public void setCodArt(int cod){
+        codArt=cod;
+    }
+    
+    public int getCodArt(){
+        return codArt;
     }
     
     public void setNombre(String nom){
