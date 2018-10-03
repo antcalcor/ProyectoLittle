@@ -170,13 +170,22 @@ public class MetodosFactura extends Database{
         Object[][] data = new String[registros][4];
         System.out.println("prueba tabla 1");
         
-        for(int i=0;i>registros;i++){
+        int i=0;
+        while (i<articulosFactura.size()){
             System.out.println("prueba tabla 2");
             data[i][0] = String.valueOf(articulosFactura.get(i).getCodArt());
             data[i][1] = articulosFactura.get(i).getNombreArt();
             data[i][2] = String.valueOf(articulosFactura.get(i).getCantidad());
             data[i][3] = String.valueOf(articulosFactura.get(i).getPrecio());
+            i++;
         }
+        /*for(int i=0;i>registros;i++){
+            System.out.println("prueba tabla 2");
+            data[i][0] = String.valueOf(articulosFactura.get(i).getCodArt());
+            data[i][1] = articulosFactura.get(i).getNombreArt();
+            data[i][2] = String.valueOf(articulosFactura.get(i).getCantidad());
+            data[i][3] = String.valueOf(articulosFactura.get(i).getPrecio());
+        }*/
         System.out.println("prueba tabla 3");
         tablemodel.setDataVector(data, columNames);
         
