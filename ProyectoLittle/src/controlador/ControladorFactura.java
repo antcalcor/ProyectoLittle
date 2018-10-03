@@ -216,15 +216,30 @@ public class ControladorFactura implements ActionListener, MouseListener {
                 Cliente cliente2 = new Cliente();
 
                 mFac.devolverCliente(mFac.buscarFactura(Integer.parseInt(pIni.jTextField10.getText())), cliente2);
-                
+
                 pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
-                
+
                 pIni.jTextField4.setText(cliente2.getNombre());
                 pIni.jTextField5.setText(cliente2.getNIF());
                 pIni.jTextField6.setText(cliente2.getDireccion());
-                
+
                 pIni.jTextField8.setText(String.format("%.2f", mFac.calcularImporte()));
                 pIni.jTextField9.setText(String.format("%.2f", mFac.calcularImporte() * 1.21));
+
+                break;
+
+            case BORRAR_FAC:
+
+                if (mFac.borrarFactura(Integer.parseInt(pIni.jTextField10.getText())) == true) {
+
+                    pIni.jTextField10.setText("");
+                    pIni.jFormattedTextField7.setText(String.valueOf(0));
+                    pIni.jTextField8.setText("");
+                    pIni.jTextField9.setText("");
+                    articulosFactura.clear();
+                    pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
+
+                }
 
                 break;
 

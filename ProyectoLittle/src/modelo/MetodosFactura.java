@@ -333,5 +333,39 @@ public class MetodosFactura extends Database {
 
         return nif;
     }
+    
+    public boolean borrarFactura(int codFact){
+        
+        String q = "DELETE FROM artfact WHERE codFact=" + codFact;
+        
+        String q2 = "DELETE FROM facturas WHERE codFact=" + codFact;
+        
+        try{
+            
+            PreparedStatement pstm = this.getConnection().prepareStatement(q);
+            pstm.execute();
+            pstm.close();
+            
+            try{
+                
+                PreparedStatement pstm2 = this.getConnection().prepareStatement(q2);
+                pstm2.execute();
+                pstm2.close();
+                articulosFactura.clear();
+                JOptionPane.showMessageDialog(null, "Factura Eliminada");
+                return true;
+                
+            }catch(SQLException e){
+               
+                JOptionPane.showMessageDialog(null, "No se ha podido eliminar la factura");
+                return false;
+            }
+            
+        }catch(SQLException e){
+            
+            JOptionPane.showMessageDialog(null, "No se ha podido eliminar la factura");
+            return false;
+        }
+    }
 
 }
