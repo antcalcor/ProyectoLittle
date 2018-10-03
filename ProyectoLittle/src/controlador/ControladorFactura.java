@@ -32,6 +32,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
 
     public PantallaInicial pIni = new PantallaInicial();
     public MetodosFactura mFac = new MetodosFactura();
+    public static int fila;
     
     //Declaramos en un enum las acciones relacionadas con la factura
     public enum accionesFactura{
@@ -86,7 +87,6 @@ public class ControladorFactura implements ActionListener, MouseListener{
             pIni.jComboBox2.addItem(String.valueOf(aux1.get(i)));
             
         }
-        //voy a añadir un elemento vacio al arraylist
         
         //añadimos acciones y escuchas de los componentes
         pIni.jButton14.setActionCommand("BUSCAR_CLI");
@@ -178,6 +178,21 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
 
                 break;
+                
+            case BORRAR_PROD:
+                
+                mFac.borrarProducto_array(fila);
+                pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
+                fila=0;
+                
+                break;
+                
+            case CALCULAR_FAC:
+                
+                pIni.jTextField8.setText(String.valueOf(mFac.calcularImporte()));
+                pIni.jTextField9.setText(String.valueOf(mFac.calcularImporte()*1.21));
+                
+                break;
             
         }
         
@@ -187,7 +202,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
         
        if (e.getButton() == 1){
            
-           int fila = this.pIni.jTable3.rowAtPoint(e.getPoint());
+           fila = this.pIni.jTable3.rowAtPoint(e.getPoint());
            if (fila>-1){
                
                pIni.jTextField7.setText(String.valueOf(pIni.jTable3.getValueAt(fila, 0)));

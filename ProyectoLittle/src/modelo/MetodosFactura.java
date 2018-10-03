@@ -189,6 +189,28 @@ public class MetodosFactura extends Database{
         return tablemodel;
     }
     
+    public void borrarProducto_array(int posicion){
+        
+        articulosFactura.remove(posicion);
+        
+    }
     
+    public double calcularImporte(){
+        
+        int cantidad;
+        double precio;
+        double total=0;
+        
+        for(int i = 0; i<articulosFactura.size();i++){
+            
+            cantidad = articulosFactura.get(i).getCantidad();
+            precio = articulosFactura.get(i).getPrecio();
+            
+            total = total + (cantidad*precio);
+            
+        }
+        
+        return total;
+    }
     
 }
