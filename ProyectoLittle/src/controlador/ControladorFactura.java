@@ -198,7 +198,14 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 
             case GUARDAR_FAC:
                 
-                mFac.guardarFacturaBBDD();
+                if (mFac.guardarFacturaBBDD(pIni.jTextField5.getText())==true){
+                    
+                    pIni.jFormattedTextField7.setText(String.valueOf(0));
+                    pIni.jTextField8.setText("");
+                    pIni.jTextField9.setText("");
+                    articulosFactura.clear();
+                    pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
+                }
                 
                 break;
             

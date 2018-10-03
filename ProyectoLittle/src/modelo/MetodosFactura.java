@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -138,7 +139,7 @@ public class MetodosFactura extends Database{
             
         String q = "SELECT nombreArt FROM articulos WHERE CodArt = " + codArt ;
         
-        String q2 = "SELECT max(codFact) FROM artfact";
+        String q2 = "SELECT max(codFact) FROM facturas";
         
         PreparedStatement pstm = this.getConnection().prepareStatement(q);
         ResultSet res = pstm.executeQuery();
@@ -225,7 +226,32 @@ public class MetodosFactura extends Database{
         return total;
     }
     
-    public void guardarFacturaBBDD(){
+    public boolean guardarFacturaBBDD(String nif){
+        
+        if (articulosFactura.size()!=0){
+            
+            String q = "INSERT INTO facturas (codFact, importe, total, nif) VALUES ('"
+                + articulosFactura.get(0).getCodFact() + "','" + calcularImporte() + "','"
+                    + (calcularImporte()+1.21) + "','" + nif + "')";
+            
+            try{
+                
+                PreparedStatement pstm = this.getConnection().prepareStatement(q);
+                pstm.execute();
+                pstm.close();
+                System.out.println("insertado");
+                JOptionPane.showMessageDialog(null, "Factura Guardada");
+                return true;
+                
+            }catch (SQLException e){
+                
+                JOptionPane.showMessageDialog(null, "No se ha podido Guardar la Factura");
+                return false;
+            }
+            
+        }
+        
+        return false;
         
     }
     
