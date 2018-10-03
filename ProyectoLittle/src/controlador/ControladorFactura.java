@@ -193,6 +193,12 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 pIni.jTextField9.setText(String.valueOf(mFac.calcularImporte()*1.21));
                 
                 break;
+                
+            case GUARDAR_FAC:
+                
+                mFac.guardarFacturaBBDD();
+                
+                break;
             
         }
         

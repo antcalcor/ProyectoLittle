@@ -126,6 +126,16 @@ public class MetodosFactura extends Database{
     //Método para añadir un artículo al array de lineas de una factura
     public void agnadirArticulo(int codArt,int cantidad,double precio) throws SQLException{
         
+        boolean duplicado=false;
+        
+        for (int i=0;i<articulosFactura.size();i++){
+            if (articulosFactura.get(i).getCodArt()==codArt){
+                duplicado=true;
+            }
+        }
+        
+        if (duplicado==false){
+            
         String q = "SELECT nombreArt FROM articulos WHERE CodArt = " + codArt ;
         
         String q2 = "SELECT max(codFact) FROM artfact";
@@ -158,6 +168,8 @@ public class MetodosFactura extends Database{
         ArtFact articulo = new ArtFact(codArt,codFact+1,nombreArt,cantidad,precio);
         articulosFactura.add(articulo);
         
+        }
+               
     }
     
     //Método para añadir los artículos a la tabla
@@ -211,6 +223,10 @@ public class MetodosFactura extends Database{
         }
         
         return total;
+    }
+    
+    public void guardarFacturaBBDD(){
+        
     }
     
 }
