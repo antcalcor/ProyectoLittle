@@ -182,6 +182,21 @@ public class ControladorFactura implements ActionListener, MouseListener{
         }
         
     }
+    
+    private void presionarJTable3(java.awt.event.MouseEvent e){
+        
+       if (e.getButton() == 1){
+           
+           int fila = this.pIni.jTable3.rowAtPoint(e.getPoint());
+           if (fila>-1){
+               
+               pIni.jTextField7.setText(String.valueOf(pIni.jTable3.getValueAt(fila, 0)));
+               pIni.jComboBox2.setSelectedItem(pIni.jTextField7.getText());
+               pIni.jFormattedTextField7.setText(String.valueOf(pIni.jTable3.getValueAt(fila, 2)));
+               pIni.jTextField11.setText(String.valueOf(pIni.jTable3.getValueAt(fila, 3)));
+           }
+       }
+    }
 
     @Override
     public void mouseClicked(MouseEvent me) {
@@ -191,6 +206,7 @@ public class ControladorFactura implements ActionListener, MouseListener{
     @Override
     public void mousePressed(MouseEvent me) {
         //To change body of generated methods, choose Tools | Templates.
+        presionarJTable3(me);
     }
 
     @Override
