@@ -74,9 +74,6 @@ public class ControladorCliente implements ActionListener, MouseListener{
 		pIni.jButton8.addActionListener(this);
 		
 		pIni.jDialog1.setLocationRelativeTo(null);
-		/*pIni.ConsultarCompras.setLocationRelativeTo(null);
-		pIni.AgnadirOpinion.setLocationRelativeTo(null);
-		pIni.ConsultarCartelera.setLocationRelativeTo(null);*/
 		
                 pIni.jTable1.setModel(mCli.cogerClientesBBDDTodo());
 		
@@ -158,22 +155,13 @@ public class ControladorCliente implements ActionListener, MouseListener{
 				pIni.jTextField2.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 1)).trim());
                                 pIni.jTextField3.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila, 2)).trim());
 			}
-                        /*int fila2 = this.pIni.jTable1.rowAtPoint(e.getPoint());
-                        if (fila2 > -1){                
-                                pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila2, 0)));             }
-                        }
-                        int fila3 = this.pIni.jTable1.rowAtPoint(e.getPoint());
-                                if (fila3 > -1){                
-                                        pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila3, 0)));             }
-                        */
+                        
                         }}
 	
 	
     @Override
     public void mouseClicked(MouseEvent e) {
-            // para que tenga en cuenta el click en la tabla
-            //presionarJTable1(e);
-                
+                            
     }
   
 

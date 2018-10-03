@@ -184,9 +184,7 @@ public class MetodosCliente extends Database{
          
          
          //METODO PARA BUSCAR CLIENTES
-         public void buscarCliente(Cliente cliente, String nif){
-             
-             //Cliente cliente=null;
+    public void buscarCliente(Cliente cliente, String nif){
              
         try {
             String q = "SELECT nombre, direcc FROM clientes WHERE nif = '" + nif + "'";
@@ -200,15 +198,14 @@ public class MetodosCliente extends Database{
                 cliente.setDireccion(res.getString("direcc"));
                 i++;
             }
-           // cliente = new Cliente(res.getString("nif"), res.getString("nombre"), res.getString("direcc"));        
+                
             pstm.execute();
             pstm.close();
-                 
             
         } catch (SQLException ex) {
             Logger.getLogger(MetodosCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //return cliente;
+        
          }
     
     

@@ -184,9 +184,7 @@ public class MetodosArticulo extends Database{
          
          
          //METODO PARA BUSCAR ARTICULOS
-         public void buscarArticulo(Articulo articulo, int codArt){
-             
-             //Articulo articulo=new Articulo ();
+    public void buscarArticulo(Articulo articulo, int codArt){
              
         try {
             String q = "SELECT nombreArt, precio FROM articulos WHERE CodArt = " + codArt;
@@ -200,25 +198,15 @@ public class MetodosArticulo extends Database{
                 articulo.setCodArt(codArt);
                 i++;
             }
-            //int cod= Integer.parseInt(res.getString("CodArt"));
-            
-            
-            //articulo = new Articulo(cod, nom , prec);        
+                  
             pstm.execute();
             pstm.close();
-                 
-            
+           
         } catch (SQLException ex) {
             Logger.getLogger(MetodosCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //return articulo;
+        
          }
-    
-    
-    
-    
-    
-    
     
     
     

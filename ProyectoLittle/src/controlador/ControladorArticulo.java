@@ -88,10 +88,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
     @Override
         public void actionPerformed(ActionEvent e) {
             
-            /*nombre = pIni.jTextField1.getText();
-            codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
-            precio = Double.parseDouble(pIni.jFormattedTextField5.getText());*/
-		switch (accionesArticulo.valueOf(e.getActionCommand())) {
+            switch (accionesArticulo.valueOf(e.getActionCommand())) {
 		//PARA VOLVER A LA PANTALLA INICIAL
 		case VOLVER:
                     
@@ -102,8 +99,8 @@ public class ControladorArticulo implements ActionListener, MouseListener{
                  
                 //PARA INSERTAR UN CLIENTE        
 		case INSERTAR:
+                    
                     try{
-                        
                         
                         //cogemos los datos de los campos		
 			nombre = pIni.jTextField1.getText();
@@ -118,16 +115,13 @@ public class ControladorArticulo implements ActionListener, MouseListener{
                         JOptionPane.showMessageDialog(null, "El precio tiene que ser un número y el decimal se separa con '.'");
                     }
 			
-			
-			break;
+		break;
                         
                 //PARA BORRAR UN CLIENTE
 		case BORRAR:
                     try{
                         
-                        //nombre = pIni.jTextField1.getText();
                         codArt = Integer.parseInt(pIni.jFormattedTextField4.getText());
-                        //precio = Double.parseDouble(pIni.campoPrecio.getText());
                         mArt.eliminarArticulo(codArt);
 			pIni.jTable2.setModel(mArt.cogerArticulosBBDDTodo());
                         
@@ -135,9 +129,7 @@ public class ControladorArticulo implements ActionListener, MouseListener{
                         JOptionPane.showMessageDialog(null, "El precio tiene que ser un número y el decimal se separa con '.'");
                     }                 
 
-                        
-                        
-			break;
+		break;
                         
                 //PARA MODIFICAR UN CLIENTE
 		case MODIFICAR:
@@ -180,19 +172,12 @@ public class ControladorArticulo implements ActionListener, MouseListener{
 		{
 			int fila = this.pIni.jTable2.rowAtPoint(e.getPoint());
 			if (fila > -1) {
-				//codArt = String.valueOf(this.pIni.jTable2.getValueAt(fila, 0));
-				pIni.jFormattedTextField4.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 0)));
-				pIni.jTextField1.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 1)));
-                                pIni.campoPrecio.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 2)));
+                            
+                            pIni.jFormattedTextField4.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 0)));
+                            pIni.jTextField1.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 1)));
+                            pIni.campoPrecio.setText(String.valueOf(this.pIni.jTable2.getValueAt(fila, 2)));
 			}
-                        /*int fila2 = this.pIni.jTable1.rowAtPoint(e.getPoint());
-                        if (fila2 > -1){                
-                                pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila2, 0)));             }
-                        }
-                        int fila3 = this.pIni.jTable1.rowAtPoint(e.getPoint());
-                                if (fila3 > -1){                
-                                        pIni.jFormattedTextField1.setText(String.valueOf(this.pIni.jTable1.getValueAt(fila3, 0)));             }
-                        */
+                        
                         }}
 	
 	
