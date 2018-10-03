@@ -208,6 +208,14 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 }
                 
                 break;
+                
+            case BUSCAR_FAC:
+                
+                Cliente cliente2;
+                
+                mFac.buscarFactura(Integer.parseInt(pIni.jTextField10.getText()));
+                
+                break;
             
         }
         

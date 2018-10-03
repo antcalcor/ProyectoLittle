@@ -16,44 +16,45 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class MetodosFactura extends Database{
+public class MetodosFactura extends Database {
+
     //Creamos un array para guardar las lineas de la factura
     public static ArrayList<ArtFact> articulosFactura = new ArrayList<ArtFact>();
-    public ArrayList<String> nifClientes(){
-      
-        
+
+    public ArrayList<String> nifClientes() {
+
         ArrayList<String> aux = new ArrayList<String>();
         String q = "SELECT nif FROM clientes";
-        
-        try{
+
+        try {
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-            int i=0;
-            while (res.next()){
+            int i = 0;
+            while (res.next()) {
                 aux.add(res.getString("nif"));
                 i++;
             }
             pstm.execute();
             pstm.close();
-            
+
             return aux;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
             return aux;
         }
     }
-    
-    public ArrayList<Integer> codigoArticulos(){
+
+    public ArrayList<Integer> codigoArticulos() {
 
         ArrayList<Integer> aux = new ArrayList<Integer>();
         String q = "SELECT CodArt FROM articulos";
 
-        try{
+        try {
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-            int i=0;
-            while (res.next()){
+            int i = 0;
+            while (res.next()) {
                 aux.add(res.getInt("CodArt"));
                 i++;
             }
@@ -62,23 +63,23 @@ public class MetodosFactura extends Database{
 
             return aux;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
             return aux;
         }
     }
 
     //Método para sacar los datos de un cliente
-    public void devolverCliente(String dni,Cliente cliente){
+    public void devolverCliente(String dni, Cliente cliente) {
 
         String q = "SELECT nombre, direcc FROM clientes WHERE nif='" + dni + "'";
 
-        try{
+        try {
 
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-            int i=0;
-            while (res.next()){
+            int i = 0;
+            while (res.next()) {
                 cliente.setNombre(res.getString("nombre"));
                 cliente.setDireccion(res.getString("direcc"));
                 cliente.setNIF(dni);
@@ -87,103 +88,103 @@ public class MetodosFactura extends Database{
             pstm.execute();
             pstm.close();
 
-        }catch (SQLException e){
-        System.err.println(e.getMessage());
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
         }
     }
-    
+
     //Método para sacar el precio de un artículo
-    public double devolverPrecio(int codArt){
-        
+    public double devolverPrecio(int codArt) {
+
         String q = "SELECT precio FROM articulos WHERE CodArt='" + codArt + "'";
 
-        double precio=0;
-        
-        try{
+        double precio = 0;
+
+        try {
 
             PreparedStatement pstm = this.getConnection().prepareStatement(q);
             ResultSet res = pstm.executeQuery();
-            
-            int i=0;
-            
-            while(res.next()){
+
+            int i = 0;
+
+            while (res.next()) {
                 precio = res.getDouble("precio");
                 i++;
             }
             pstm.execute();
             pstm.close();
-            
+
             return precio;
 
-        }catch (SQLException e){
-        System.err.println(e.getMessage());
-        
-        return precio;
-        
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+
+            return precio;
+
         }
-        
+
     }
-    
+
     //Método para añadir un artículo al array de lineas de una factura
-    public void agnadirArticulo(int codArt,int cantidad,double precio) throws SQLException{
-        
-        boolean duplicado=false;
-        
-        for (int i=0;i<articulosFactura.size();i++){
-            if (articulosFactura.get(i).getCodArt()==codArt){
-                duplicado=true;
+    public void agnadirArticulo(int codArt, int cantidad, double precio) throws SQLException {
+
+        boolean duplicado = false;
+
+        for (int i = 0; i < articulosFactura.size(); i++) {
+            if (articulosFactura.get(i).getCodArt() == codArt) {
+                duplicado = true;
             }
         }
-        
-        if (duplicado==false){
-            
-        String q = "SELECT nombreArt FROM articulos WHERE CodArt = " + codArt ;
-        
-        String q2 = "SELECT max(codFact) FROM facturas";
-        
-        PreparedStatement pstm = this.getConnection().prepareStatement(q);
-        ResultSet res = pstm.executeQuery();
-        
-        int codFact=0;
-        String nombreArt="";
-        int i=0;
-        while(res.next()){
-            
-            nombreArt=res.getString("nombreArt");
-            i++;
+
+        if (duplicado == false) {
+
+            String q = "SELECT nombreArt FROM articulos WHERE CodArt = " + codArt;
+
+            String q2 = "SELECT max(codFact) FROM facturas";
+
+            PreparedStatement pstm = this.getConnection().prepareStatement(q);
+            ResultSet res = pstm.executeQuery();
+
+            int codFact = 0;
+            String nombreArt = "";
+            int i = 0;
+            while (res.next()) {
+
+                nombreArt = res.getString("nombreArt");
+                i++;
+            }
+            pstm.execute();
+            pstm.close();
+
+            PreparedStatement pstm2 = this.getConnection().prepareStatement(q2);
+            ResultSet res2 = pstm2.executeQuery(q2);
+
+            i = 0;
+
+            while (res2.next()) {
+
+                codFact = res2.getInt("max(codFact)");
+
+            }
+
+            ArtFact articulo = new ArtFact(codArt, codFact + 1, nombreArt, cantidad, precio);
+            articulosFactura.add(articulo);
+
         }
-        pstm.execute();
-        pstm.close();
-        
-        PreparedStatement pstm2 = this.getConnection().prepareStatement(q2);
-        ResultSet res2 = pstm2.executeQuery(q2);
-        
-        i=0;
-        
-        while(res2.next()){
-            
-            codFact=res2.getInt("max(codFact)");
-            
-        }
-        
-        ArtFact articulo = new ArtFact(codArt,codFact+1,nombreArt,cantidad,precio);
-        articulosFactura.add(articulo);
-        
-        }
-               
+
     }
-    
+
     //Método para añadir los artículos a la tabla
-    public DefaultTableModel agnadirArticulosTabla(){
-        
+    public DefaultTableModel agnadirArticulosTabla() {
+
         DefaultTableModel tablemodel = new DefaultTableModel();
-        int registros=articulosFactura.size();
-        String[] columNames = {"Codigo","Nombre","Cantidad","Precio"};
-        
+        int registros = articulosFactura.size();
+        String[] columNames = {"Codigo", "Nombre", "Cantidad", "Precio"};
+
         Object[][] data = new String[registros][4];
-        
-        int i=0;
-        while (i<articulosFactura.size()){
+
+        int i = 0;
+        while (i < articulosFactura.size()) {
             data[i][0] = String.valueOf(articulosFactura.get(i).getCodArt());
             data[i][1] = articulosFactura.get(i).getNombreArt();
             data[i][2] = String.valueOf(articulosFactura.get(i).getCantidad());
@@ -198,61 +199,89 @@ public class MetodosFactura extends Database{
             data[i][3] = String.valueOf(articulosFactura.get(i).getPrecio());
         }*/
         tablemodel.setDataVector(data, columNames);
-        
+
         return tablemodel;
     }
-    
-    public void borrarProducto_array(int posicion){
-        
+
+    public void borrarProducto_array(int posicion) {
+
         articulosFactura.remove(posicion);
-        
+
     }
-    
-    public double calcularImporte(){
-        
+
+    public double calcularImporte() {
+
         int cantidad;
         double precio;
-        double total=0;
-        
-        for(int i = 0; i<articulosFactura.size();i++){
-            
+        double total = 0;
+
+        for (int i = 0; i < articulosFactura.size(); i++) {
+
             cantidad = articulosFactura.get(i).getCantidad();
             precio = articulosFactura.get(i).getPrecio();
-            
-            total = total + (cantidad*precio);
-            
+
+            total = total + (cantidad * precio);
+
         }
-        
+
         return total;
     }
-    
-    public boolean guardarFacturaBBDD(String nif){
-        
-        if (articulosFactura.size()!=0){
-            
+
+    public boolean guardarFacturaBBDD(String nif) {
+
+        if (articulosFactura.size() != 0) {
+
             String q = "INSERT INTO facturas (codFact, importe, total, nif) VALUES ('"
-                + articulosFactura.get(0).getCodFact() + "','" + calcularImporte() + "','"
-                    + (calcularImporte()+1.21) + "','" + nif + "')";
-            
-            try{
-                
+                    + articulosFactura.get(0).getCodFact() + "','" + calcularImporte() + "','"
+                    + (calcularImporte() * 1.21) + "','" + nif + "')";
+
+            try {
+
                 PreparedStatement pstm = this.getConnection().prepareStatement(q);
                 pstm.execute();
                 pstm.close();
+                
+                for (int i = 0; i < articulosFactura.size(); i++) {
+
+                    String q2 = "INSERT INTO artfact (codArt, codFact, precio, cantidad, nombreArt) VALUES ('"
+                            + articulosFactura.get(i).getCodArt() + "','" + articulosFactura.get(i).getCodFact()
+                            + "','" + articulosFactura.get(i).getPrecio() + "','" + articulosFactura.get(i).getCantidad()
+                            + "','" + articulosFactura.get(i).getNombreArt() + "')";
+
+                    try {
+
+                        PreparedStatement pstm2 = this.getConnection().prepareStatement(q2);
+                        pstm2.execute();
+                        pstm2.close();
+
+                    } catch (SQLException e) {
+
+                        JOptionPane.showMessageDialog(null, "No se ha podido Guardar la Factura");
+                        return false;
+                    }
+
+                }
                 System.out.println("insertado");
                 JOptionPane.showMessageDialog(null, "Factura Guardada");
                 return true;
-                
-            }catch (SQLException e){
-                
+
+            } catch (SQLException e) {
+
                 JOptionPane.showMessageDialog(null, "No se ha podido Guardar la Factura");
                 return false;
             }
-            
+
         }
-        
+
         return false;
-        
+
     }
-    
+
+    public String buscarFactura(int codigoFactura) {
+
+        String q = "SELECT ";
+
+        return "";
+    }
+
 }
