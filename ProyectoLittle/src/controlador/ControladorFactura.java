@@ -181,9 +181,11 @@ public class ControladorFactura implements ActionListener, MouseListener{
                 
             case BORRAR_PROD:
                 
-                mFac.borrarProducto_array(fila);
-                pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
-                fila=0;
+                if (articulosFactura.size()!=0){
+                    mFac.borrarProducto_array(fila);
+                    pIni.jTable3.setModel(mFac.agnadirArticulosTabla());
+                    fila=0;
+                }
                 
                 break;
                 
