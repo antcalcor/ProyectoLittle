@@ -136,7 +136,7 @@ public class MetodosFactura extends Database {
             }
         }
 
-        if (duplicado == false) {
+        if (duplicado == false && cantidad>0) {
 
             String q = "SELECT nombreArt FROM articulos WHERE CodArt = " + codArt;
 

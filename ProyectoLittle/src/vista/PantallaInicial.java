@@ -416,6 +416,8 @@ public class PantallaInicial extends javax.swing.JFrame {
 
         jButton19.setText("Calcular Factura");
 
+        jFormattedTextField7.setText("0");
+
         jLabel22.setText("Cantidad: ");
 
         jLabel23.setText("Importe: ");
