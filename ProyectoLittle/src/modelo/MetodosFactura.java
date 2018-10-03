@@ -240,7 +240,7 @@ public class MetodosFactura extends Database {
                 PreparedStatement pstm = this.getConnection().prepareStatement(q);
                 pstm.execute();
                 pstm.close();
-                
+
                 for (int i = 0; i < articulosFactura.size(); i++) {
 
                     String q2 = "INSERT INTO artfact (codArt, codFact, precio, cantidad, nombreArt) VALUES ('"
@@ -279,9 +279,59 @@ public class MetodosFactura extends Database {
 
     public String buscarFactura(int codigoFactura) {
 
-        String q = "SELECT ";
+        String q = "SELECT nif FROM facturas WHERE codFact = " + codigoFactura;
 
-        return "";
+        String nif = "";
+        try {
+            PreparedStatement pstm = this.getConnection().prepareStatement(q);
+            ResultSet res = pstm.executeQuery();
+
+            int i = 0;
+            while (res.next()) {
+
+                nif = res.getString("nif");
+                i++;
+            }
+            pstm.execute();
+            pstm.close();
+        } catch (SQLException e) {
+
+        }
+
+        String q2 = "SELECT codArt, nombreArt, cantidad, precio FROM artfact WHERE codFact = " + codigoFactura;
+
+        articulosFactura.clear();
+        
+        int codArt,cantidad;
+        double precio;
+        String nombreArt;
+
+        try {
+
+            PreparedStatement pstm = this.getConnection().prepareStatement(q2);
+            ResultSet res2 = pstm.executeQuery();
+
+            int i = 0;
+
+            while (res2.next()) {
+                codArt = res2.getInt("codArt");
+                nombreArt = res2.getString("nombreArt");
+                cantidad = res2.getInt("cantidad");
+                precio = res2.getDouble("precio");
+                
+                articulosFactura.add(new ArtFact(codArt,codigoFactura,nombreArt,cantidad,precio));
+                i++;
+            }
+            pstm.execute();
+            pstm.close();
+
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+
+        }
+
+        return nif;
     }
 
 }
