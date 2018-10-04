@@ -18,9 +18,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodosFactura extends Database {
 
-    //Creamos un array para guardar las lineas de la factura
+    //Creamos un array para guardar las lineas de la factura(articulos de cada factura)
     public static ArrayList<ArtFact> articulosFactura = new ArrayList<ArtFact>();
 
+    //metodo para añadir a un arraylist el listado de dni de los clientes de la bbdd
     public ArrayList<String> nifClientes() {
 
         ArrayList<String> aux = new ArrayList<String>();
@@ -45,6 +46,7 @@ public class MetodosFactura extends Database {
         }
     }
 
+    //metodo para añadir a un arraylist el listado de codigos de los articulos de la bbdd
     public ArrayList<Integer> codigoArticulos() {
 
         ArrayList<Integer> aux = new ArrayList<Integer>();
@@ -191,7 +193,7 @@ public class MetodosFactura extends Database {
             data[i][3] = String.valueOf(articulosFactura.get(i).getPrecio());
             i++;
         }
-        /*for(int i=0;i>registros;i++){
+        /*for(int i=0;i<registros;i++){
             System.out.println("prueba tabla 2");
             data[i][0] = String.valueOf(articulosFactura.get(i).getCodArt());
             data[i][1] = articulosFactura.get(i).getNombreArt();
@@ -203,12 +205,14 @@ public class MetodosFactura extends Database {
         return tablemodel;
     }
 
+    //metodo para borrar los productos que hay en el arraylist de productos de cada factura
     public void borrarProducto_array(int posicion) {
 
         articulosFactura.remove(posicion);
 
     }
 
+    //metodo para calcular el importe de todos los productos de una factura
     public double calcularImporte() {
 
         int cantidad;
@@ -227,6 +231,7 @@ public class MetodosFactura extends Database {
         return total;
     }
 
+    //metodo para guardar la factura completa en la bbdd
     public boolean guardarFacturaBBDD(String nif) {
 
         if (articulosFactura.size() != 0) {
@@ -277,6 +282,7 @@ public class MetodosFactura extends Database {
 
     }
 
+    //metodo que devuelve el dni del cliente de una factura y rellena el arraylist de los articulos de esa factura
     public String buscarFactura(int codigoFactura) {
 
         String q = "SELECT nif FROM facturas WHERE codFact = " + codigoFactura;
@@ -334,6 +340,7 @@ public class MetodosFactura extends Database {
         return nif;
     }
     
+    //metodo para borrar la factura completa de la bbdd
     public boolean borrarFactura(int codFact){
         
         String q = "DELETE FROM artfact WHERE codFact=" + codFact;

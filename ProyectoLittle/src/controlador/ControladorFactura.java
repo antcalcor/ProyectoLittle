@@ -32,6 +32,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
     public PantallaInicial pIni = new PantallaInicial();
     public MetodosFactura mFac = new MetodosFactura();
+    //creo un atributo estatico para poderlo usar en otra clase, es la fila que se pulsa en la tabla creada
     public static int fila;
 
     //Declaramos en un enum las acciones relacionadas con la factura
@@ -117,6 +118,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
         switch (accionesFactura.valueOf(e.getActionCommand())) {
 
+            //añade los campos cuando seleccionas un item en el jcombobox
             case CLIENTE:
 
                 Cliente cliente = new Cliente();
@@ -128,6 +130,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //añade los campos cuando seleccionas un item en el jcombobox
             case ARTICULO:
 
                 pIni.jTextField7.setText(pIni.jComboBox2.getSelectedItem().toString());
@@ -135,6 +138,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa buscar devuelve en los jtextfield los parametros de cliente
             case BUSCAR_CLI:
 
                 Cliente cliente1 = new Cliente();
@@ -146,12 +150,15 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa buscar articulo rellena los campos de articulo
             case BUSCAR_ART:
 
                 pIni.jTextField11.setText(String.valueOf(mFac.devolverPrecio(Integer.parseInt(pIni.jTextField7.getText()))));
                 pIni.jComboBox2.setSelectedItem(pIni.jTextField7.getText());
 
                 break;
+                
+            //para volver a la vista principal
             case VOLVER:
 
                 pIni.jDialog3.setVisible(false);
@@ -159,6 +166,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa se añade el producto a la factura
             case COMPRAR_PROD:
 
                 int cod,
@@ -179,6 +187,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa se borra el producto de la factura
             case BORRAR_PROD:
 
                 if (articulosFactura.size() != 0) {
@@ -189,6 +198,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa añade los campos de importe y total dependiendo de los productos que hay en la factura
             case CALCULAR_FAC:
 
                 pIni.jTextField8.setText(String.format("%.2f", mFac.calcularImporte()));
@@ -198,6 +208,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa guarda la factura en la bbdd y los campos se resetean
             case GUARDAR_FAC:
 
                 if (mFac.guardarFacturaBBDD(pIni.jTextField5.getText()) == true) {
@@ -211,6 +222,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa añade todos los campos de la factura que ha buscado
             case BUSCAR_FAC:
 
                 Cliente cliente2 = new Cliente();
@@ -228,6 +240,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
                 break;
 
+            //cuando pulsa elimina la factura de la bbdd y resetea los campos
             case BORRAR_FAC:
 
                 if (mFac.borrarFactura(Integer.parseInt(pIni.jTextField10.getText())) == true) {
@@ -247,6 +260,7 @@ public class ControladorFactura implements ActionListener, MouseListener {
 
     }
 
+    //metodo para que cuando se presiona la tabla se rellenen los campos correspondientes
     private void presionarJTable3(java.awt.event.MouseEvent e) {
 
         if (e.getButton() == 1) {
